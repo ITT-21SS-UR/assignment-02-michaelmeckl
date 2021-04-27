@@ -12,7 +12,6 @@ def log_keys(on_keyboard: bool):
     def func_decorator(func):
         @functools.wraps(func)
         def wrapper(class_instance, event):
-            # print(f"The function {func.__name__} has been called")
             if on_keyboard:
                 print(f"The button \"{event.text()}\" was clicked on the keyboard.")
             else:
@@ -84,26 +83,6 @@ class Calculator(QtWidgets.QWidget):
 
         self.__KEYBOARD_KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "+", "-", "*", "/"]
 
-        # use a dict as a replacement for switch which is not (yet) available:
-        # see https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python
-        # self.__KEY_MAPPING = {
-        #     self.ui.btn_0: 0,
-        #     self.ui.btn_1: 1,
-        #     self.ui.btn_2: 2,
-        #     self.ui.btn_3: 3,
-        #     self.ui.btn_4: 4,
-        #     self.ui.btn_5: 5,
-        #     self.ui.btn_6: 6,
-        #     self.ui.btn_7: 7,
-        #     self.ui.btn_8: 8,
-        #     self.ui.btn_9: 9,
-        #     self.ui.btn_point: ".",
-        #     self.ui.btn_add: " + ",
-        #     self.ui.btn_sub: " - ",
-        #     self.ui.btn_mult: " * ",
-        #     self.ui.btn_div: " / ",
-        # }
-
         # don't let user edit input field directly for now
         self.ui.input_field.setReadOnly(True)
         self._setup_listeners()
@@ -133,7 +112,6 @@ class Calculator(QtWidgets.QWidget):
             self._update_input_field(event.text())
         else:
             pass
-            # print("Not a valid key!")
 
     @log_keys(False)
     def _handle_button_press(self, pressed_button: QPushButton) -> None:
